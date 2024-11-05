@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Document Request UI</title>
+    <style>
+        body {
+            background-image: url('background.jpg');
+            font-family: Arial, sans-serif;
+            color: #333;
+            padding: 20px;
+        }
+        select, textarea {
+            width: 50%;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        textarea {
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Document Request Form</h1>
+
+    <label for="requestType">Select Request Type:</label>
+    <select id="requestType">
+        <option value="">--Select--</option>
+        <option value="fax">Fax Request</option>
+        <option value="scheduling">Scheduling</option>
+    </select>
+
+    <div id="faxOptions" style="display:none;">
+        <label for="faxDocument">Select Document:</label>
+        <select id="faxDocument">
+            <option value="">--Select--</option>
+            <option value="swo">SWO</option>
+            <option value="cmn">CMN</option>
+            <option value="6mwt">6MWT</option>
+            <option value="tss">TSS</option>
+            <option value="pocRx">POC Rx</option>
+        </select>
+
+        <textarea id="faxText" placeholder="Your text here..."></textarea>
+    </div>
+
+    <div id="schedulingOptions" style="display:none;">
+        <label for="scheduleDocument">Select Document:</label>
+        <select id="scheduleDocument">
+            <option value="">--Select--</option>
+            <option value="medicare">Medicare</option>
+            <option value="nonMedicare">Non-Medicare</option>
+        </select>
+
+        <textarea id="scheduleText" placeholder="Your text here..."></textarea>
+    </div>
+
+ 
+    <textarea id="notes">Remarks:</textarea>
+
+    <script>
+        const requestType = document.getElementById('requestType');
+        const faxOptions = document.getElementById('faxOptions');
+        const schedulingOptions = document.getElementById('schedulingOptions');
+        const faxDocument = document.getElementById('faxDocument');
+        const scheduleDocument = document.getElementById('scheduleDocument');
+        const faxText = document.getElementById('faxText');
+        const scheduleText = document.getElementById('scheduleText');
+
+        requestType.addEventListener('change', function() {
+            faxOptions.style.display = this.value === 'fax' ? 'block' : 'none';
+            schedulingOptions.style.display = this.value === 'scheduling' ? 'block' : 'none';
+        });
+
+        faxDocument.addEventListener('change', function() {
+            switch (this.value) {
+                case 'swo':
+                    faxText.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    break;
+                case 'cmn':
+                    faxText.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    break;
+                case '6mwt':
+                    faxText.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    break;
+                case 'tss':
+                    faxText.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    break;
+                case 'pocRx':
+                    faxText.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    break;
+                default:
+                    faxText.value = '';
+            }
+        });
+
+        scheduleDocument.addEventListener('change', function() {
+            switch (this.value) {
+                case 'medicare':
+                    scheduleText.value = "What's needed: Scheduling/ 60 Month Restart\n| RUL: \n| SWO Expiration: \n| Signed date: \n| Item/s: E1390 & \n| Comment/s:\nWe got valid testing and received signed SWO by CODE. \nInstructed not to log Medicare.\nCreated New Sales Order - CODE.\nNew Pickup/Exchange - CODE.\nSB flipped to Restart Scheduled.";
+                    break;
+                case 'nonMedicare':
+                    scheduleText.value = "What's needed: Scheduling/ 60 Month Restart\n| RUL: \n| SWO Expiration: \n| Signed date: \n| Item/s: E1390 & \n| Comment/s:\nWe got valid testing and received signed SWO by CODE. \nInstructed not to log Non-Medicare.\nCreated New Sales Order - CODE.\nNew Pickup/Exchange - CODE.\nSB flipped to Restart Scheduled.";
+                    break;
+                default:
+                    scheduleText.value = '';
+            }
+        });
+    </script>
+
+</body>
+</html>
