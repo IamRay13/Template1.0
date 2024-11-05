@@ -13,7 +13,7 @@
             padding: 20px;
         }
         select, textarea {
-            width: 50%;
+            width: 100%;
             margin: 10px 0;
             padding: 10px;
         }
@@ -44,69 +44,87 @@
             <option value="pocRx">POC Rx</option>
         </select>
 
-        <textarea id="faxText" placeholder="Your text here..."></textarea>
+        <textarea id="faxTextArea" placeholder="Your text here..."></textarea>
     </div>
 
     <div id="schedulingOptions" style="display:none;">
-        <label for="scheduleDocument">Select Document:</label>
-        <select id="scheduleDocument">
+        <label for="schedulingDocument">Select Document:</label>
+        <select id="schedulingDocument">
             <option value="">--Select--</option>
             <option value="medicare">Medicare</option>
             <option value="nonMedicare">Non-Medicare</option>
         </select>
 
-        <textarea id="scheduleText" placeholder="Your text here..."></textarea>
+        <textarea id="schedulingTextArea" placeholder="Your text here..."></textarea>
     </div>
 
- 
-    <textarea id="notes">Remarks:</textarea>
+    <label for="notes">Notes:</label>
+    <textarea id="notes" placeholder="Remarks:"></textarea>
 
     <script>
         const requestType = document.getElementById('requestType');
         const faxOptions = document.getElementById('faxOptions');
         const schedulingOptions = document.getElementById('schedulingOptions');
         const faxDocument = document.getElementById('faxDocument');
-        const scheduleDocument = document.getElementById('scheduleDocument');
-        const faxText = document.getElementById('faxText');
-        const scheduleText = document.getElementById('scheduleText');
+        const schedulingDocument = document.getElementById('schedulingDocument');
+        const faxTextArea = document.getElementById('faxTextArea');
+        const schedulingTextArea = document.getElementById('schedulingTextArea');
+        const notes = document.getElementById('notes');
 
         requestType.addEventListener('change', function() {
-            faxOptions.style.display = this.value === 'fax' ? 'block' : 'none';
-            schedulingOptions.style.display = this.value === 'scheduling' ? 'block' : 'none';
+            if (this.value === 'fax') {
+                faxOptions.style.display = 'block';
+                schedulingOptions.style.display = 'none';
+            } else if (this.value === 'scheduling') {
+                schedulingOptions.style.display = 'block';
+                faxOptions.style.display = 'none';
+            } else {
+                faxOptions.style.display = 'none';
+                schedulingOptions.style.display = 'none';
+            }
         });
 
         faxDocument.addEventListener('change', function() {
             switch (this.value) {
                 case 'swo':
-                    faxText.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    faxTextArea.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    notes.value = "THIS IS FOR SWO";
                     break;
                 case 'cmn':
-                    faxText.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    faxTextArea.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    notes.value = "THIS IS FOR CMN";
                     break;
                 case '6mwt':
-                    faxText.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    faxTextArea.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    notes.value = "THIS IS FOR 6MWT";
                     break;
                 case 'tss':
-                    faxText.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    faxTextArea.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    notes.value = "THIS IS FOR TSS";
                     break;
                 case 'pocRx':
-                    faxText.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    faxTextArea.value = "Good day,\n\nThe patient is due for their 60-month Oxygen Recertification. Kindly complete the CMN, please ensure that the dates and signature should be in the same format.\n\nPlease have DOCTOR sign and fax it back to (484) 362-1480 at your earliest convenience.\n\nFeel free to call us at (484) 567-0666 if you have any questions. \nThank you for your prompt attention!";
+                    notes.value = "THIS IS FOR POC Rx";
                     break;
                 default:
-                    faxText.value = '';
+                    faxTextArea.value = '';
+                    notes.value = '';
             }
         });
 
-        scheduleDocument.addEventListener('change', function() {
+        schedulingDocument.addEventListener('change', function() {
             switch (this.value) {
                 case 'medicare':
-                    scheduleText.value = "What's needed: Scheduling/ 60 Month Restart\n| RUL: \n| SWO Expiration: \n| Signed date: \n| Item/s: E1390 & \n| Comment/s:\nWe got valid testing and received signed SWO by CODE. \nInstructed not to log Medicare.\nCreated New Sales Order - CODE.\nNew Pickup/Exchange - CODE.\nSB flipped to Restart Scheduled.";
+                    schedulingTextArea.value = "What's needed: Scheduling/ 60 Month Restart\n| RUL: \n| SWO Expiration: \n| Signed date: \n| Item/s: E1390 & \n| Comment/s:\nWe got valid testing and received signed SWO by CODE. \nInstructed not to log Medicare.\nCreated New Sales Order - CODE.\nNew Pickup/Exchange - CODE.\nSB flipped to Restart Scheduled.";
+                    notes.value = "THIS IS SCHEDULING FOR MEDICARE";
                     break;
                 case 'nonMedicare':
-                    scheduleText.value = "What's needed: Scheduling/ 60 Month Restart\n| RUL: \n| SWO Expiration: \n| Signed date: \n| Item/s: E1390 & \n| Comment/s:\nWe got valid testing and received signed SWO by CODE. \nInstructed not to log Non-Medicare.\nCreated New Sales Order - CODE.\nNew Pickup/Exchange - CODE.\nSB flipped to Restart Scheduled.";
+                    schedulingTextArea.value = "What's needed: Scheduling/ 60 Month Restart\n| RUL: \n| SWO Expiration: \n| Signed date: \n| Item/s: E1390 & \n| Comment/s:\nWe got valid testing and received signed SWO by CODE. \nInstructed not to log Non-Medicare.\nCreated New Sales Order - CODE.\nNew Pickup/Exchange - CODE.\nSB flipped to Restart Scheduled.";
+                    notes.value = "THIS IS SCHEDULING FOR NON-MEDICARE";
                     break;
                 default:
-                    scheduleText.value = '';
+                    schedulingTextArea.value = '';
+                    notes.value = '';
             }
         });
     </script>
